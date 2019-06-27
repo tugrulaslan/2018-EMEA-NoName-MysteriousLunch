@@ -38,16 +38,15 @@ CREATE TABLE `User_Request` (
 	`requested_time` enum('week', 'month') NOT NULL,
 	`lunch_type` enum('pair', 'group') NOT NULL,
 	`request_date` DATE NOT NULL,
+	`request_status` varchar(32) NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Meeting_History` (
-	`meet_perweek_id` INT,
-	`meet_permonth_id` INT,
-    `meet_grweek_id` INT,
-	`meet_grmonth_id` INT,
+	`meeting_id` INT, 
 	`request_id` INT NOT NULL,
-	`request_date` DATE NOT NULL
+	`request_date` DATE NOT NULL,
+	`meeting_status` varchar(255)
 );
 
 ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
