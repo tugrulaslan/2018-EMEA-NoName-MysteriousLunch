@@ -1,11 +1,17 @@
-<mat-card>
-  <mat-card-header>User List</mat-card-header>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let user of users">
-        <img mat-list-avatar src="{{user.username}}" alt="{{user.username}}">
-        <h3 mat-line>{{user.username}}</h3>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+<mat-horizontal-stepper>
+  <mat-step label="Welcome">
+    Hello Name Lastname
+  </mat-step>
+  <mat-step label="Cuisines">
+    Which Cuisines do you like?
+  </mat-step>
+  <mat-step label="Interests">
+    Which Interests do you have?
+  </mat-step>
+  <mat-step label="More About yourself">
+    Bio input
+  </mat-step>
+  <mat-step label="Done">
+    You can submit
+  </mat-step>
+</mat-horizontal-stepper>
