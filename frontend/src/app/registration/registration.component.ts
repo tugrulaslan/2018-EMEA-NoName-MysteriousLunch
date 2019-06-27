@@ -11,29 +11,30 @@ import {Observable} from 'rxjs';
 })
 export class RegistrationComponent implements OnInit {
   private user: any = {};
-  private myControl = new FormControl();
+  private cuisineFormControl = new FormControl();
   private chosenCuisines: string[] = [];
   private cuisines: string[] = [];
-  private filteredCuisines: Observable<string[]>;
+  private filteredCuisines: Observable<string[]>; 
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
+    this.userService.getUserBasicInfo('tugrul').subscribe((user: any) => {
+      this.user = user;
+    });
+
     this.userService.getAllCuisines().subscribe(
       res => {
         this.cuisines = res;
       }
     );
 
-    this.filteredCuisines = this.myControl.valueChanges.pipe(
+    this.filteredCuisines = this.cuisineFormControl.valueChanges.pipe(
       startWith(''),
       map(value => this.filterCuisines(value))
     );
 
-    this.userService.getUserBasicInfo('tugrul').subscribe((user: any) => {
-      this.user = user;
-    });
   }
 
   private filterCuisines(value: string): string[] {
