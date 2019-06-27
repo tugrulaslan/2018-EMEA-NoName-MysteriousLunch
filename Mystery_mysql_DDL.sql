@@ -42,7 +42,10 @@ CREATE TABLE `User_Request` (
 );
 
 CREATE TABLE `Meeting_History` (
-	`meeting_id` INT NOT NULL,
+	`meet_perweek_id` INT,
+	`meet_permonth_id` INT,
+    `meet_grweek_id` INT,
+	`meet_grmonth_id` INT,
 	`request_id` INT NOT NULL,
 	`request_date` DATE NOT NULL
 );
