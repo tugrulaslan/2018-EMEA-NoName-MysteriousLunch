@@ -2,7 +2,6 @@
   <mat-card-header>User List</mat-card-header>
   <mat-card-content>
     <mat-list>
-{{users}}
       <mat-list-item *ngFor="let user of users">
         <img mat-list-avatar src="{{user.username}}" alt="{{user.username}}">
         <h3 mat-line>{{user.username}}</h3>
