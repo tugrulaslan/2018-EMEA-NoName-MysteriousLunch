@@ -10,11 +10,11 @@ import {Observable} from 'rxjs';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  private user: any = {};
+  private myControl = new FormControl();
   private chosenCuisines: string[] = [];
-  user: any = {};
-  myControl = new FormControl();
-  cuisines: string[] = [];
-  filteredCuisines: Observable<string[]>;
+  private cuisines: string[] = [];
+  private filteredCuisines: Observable<string[]>;
 
   constructor(private userService: UserService) {
   }
