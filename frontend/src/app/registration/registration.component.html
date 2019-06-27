@@ -4,25 +4,45 @@
   </mat-step>
   <mat-step label="Cuisines">
     <h2>Which Cuisines do you like?</h2>
-	<form class="example-form">
-	  <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option  (onSelectionChange)="selected(option)"  *ngFor="let option of filteredCuisines | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-	<br/>Selected Cuisines
-<mat-list>
-  <mat-list-item *ngFor="let cuisine of chosenCuisines">
-    {{cuisine}}
-  </mat-list-item>
-</mat-list>
-	</form>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option (onSelectionChange)="selected(option)" *ngFor="let option of filteredCuisines | async"
+                      [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>Selected Cuisines
+      <mat-list>
+        <mat-list-item *ngFor="let cuisine of chosenCuisines">
+          {{cuisine}}
+        </mat-list-item>
+      </mat-list>
+    </form>
   </mat-step>
   <mat-step label="Interests">
-    Which Interests do you have?
+    <h2>Which Interests do you have?</h2>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option (onSelectionChange)="selected(option)" *ngFor="let option of filteredCuisines | async"
+                      [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>Selected Interests
+      <mat-list>
+        <mat-list-item *ngFor="let cuisine of chosenCuisines">
+          {{cuisine}}
+        </mat-list-item>
+      </mat-list>
+    </form>
   </mat-step>
   <mat-step label="More About yourself">
     Bio input
