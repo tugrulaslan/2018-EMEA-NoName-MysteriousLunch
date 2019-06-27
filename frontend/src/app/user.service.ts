@@ -9,10 +9,15 @@ import { User } from "./user";
 export class UserService {
 
   private GET_USER_DATA_URL = 'http://localhost:8080/api/v1/users/username=';
+  private SEARCH_CUISINES_URL = 'http://localhost:8080/api/v1/cuisines/';
   private GET_ALL_CUISINES_URL = 'http://localhost:8080/api/v1/cuisines';
   private GET_ALL_INTERESTS_URL = 'http://localhost:8080/api/v1/interests';
 
   constructor(private http: HttpClient) { }
+
+  searchCuisines(cuisinename: string): Observable<any> {
+    return this.http.get(`${this.SEARCH_CUISINES_URL}${cuisinename}`);
+  }
 
   getAllCuisines(): Observable<any> {
     return this.http.get(this.GET_ALL_CUISINES_URL);

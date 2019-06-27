@@ -11,10 +11,16 @@ import {Observable} from 'rxjs';
 })
 export class RegistrationComponent implements OnInit {
   private user: any = {};
+  private bio: string;
+
   private cuisineFormControl = new FormControl();
   private chosenCuisines: string[] = [];
   private cuisines: string[] = [];
-  private filteredCuisines: Observable<string[]>; 
+  private filteredCuisines: Observable<string[]>;
+  private interestFormControl = new FormControl();
+  private chosenInterests: string[] = [];
+  private interests: string[] = [];
+  private filteredInterests: Observable<string[]>;
 
   constructor(private userService: UserService) {
   }
@@ -35,6 +41,16 @@ export class RegistrationComponent implements OnInit {
       map(value => this.filterCuisines(value))
     );
 
+    this.userService.getAllInterests().subscribe(
+      res => {
+        this.interests = res;
+      }
+    );
+
+    this.filteredInterests = this.interestFormControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterInterests(value))
+    );
   }
 
   private filterCuisines(value: string): string[] {
@@ -42,7 +58,16 @@ export class RegistrationComponent implements OnInit {
     return this.cuisines.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  private filterInterests(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.interests.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
   private selectedCuisine(selectedValue: string) {
     this.chosenCuisines.push(selectedValue);
+  }
+
+  private selectedInterest(selectedValue: string) {
+    this.chosenInterests.push(selectedValue);
   }
 }
