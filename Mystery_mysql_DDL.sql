@@ -4,7 +4,7 @@ CREATE TABLE `User` (
 	`name` varchar(100) NOT NULL,
 	`surname` varchar(100) NOT NULL,
 	`bio` varchar(500),
-	`frequency` varchar(100),
+	`frequency` enum('Weekly', 'Monthly') NOT NULL,
 	`rating` INT,
 	PRIMARY KEY (`id`)
 );
@@ -31,6 +31,21 @@ CREATE TABLE `User_Cuisine` (
 	`cuisine_id` INT NOT NULL
 );
 
+CREATE TABLE `User_Request` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`user_id` INT NOT NULL,
+	`requested_time` DATE NOT NULL,
+	`lunch_type` enum('Pair', 'Group') NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Matching_History` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`request_id` INT NOT NULL,
+	`date` DATE NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
 ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
 ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk1` FOREIGN KEY (`interest_id`) REFERENCES `Interest`(`id`);
@@ -38,4 +53,8 @@ ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk1` FOREIGN KEY (`int
 ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
 ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk1` FOREIGN KEY (`cuisine_id`) REFERENCES `Cuisine`(`id`);
+
+ALTER TABLE `User_Request` ADD CONSTRAINT `User_Request_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
+
+ALTER TABLE `Matching_History` ADD CONSTRAINT `Matching_History_fk0` FOREIGN KEY (`request_id`) REFERENCES `User_Request`(`id`);
 
