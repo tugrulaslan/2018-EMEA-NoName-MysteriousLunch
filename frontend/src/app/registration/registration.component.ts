@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     return this.cuisines.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private selected(selectedValue: string) {
+  private selectedCuisine(selectedValue: string) {
     this.chosenCuisines.push(selectedValue);
   }
 }
