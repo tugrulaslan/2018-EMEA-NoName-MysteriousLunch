@@ -4,7 +4,7 @@ CREATE TABLE `User` (
 	`name` varchar(100) NOT NULL,
 	`surname` varchar(100) NOT NULL,
 	`bio` varchar(500),
-	`frequency` enum,
+	`frequency` varchar(100),
 	`rating` INT,
 	PRIMARY KEY (`id`)
 );
