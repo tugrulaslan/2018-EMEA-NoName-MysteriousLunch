@@ -1,41 +1,41 @@
 CREATE TABLE `User` (
-	`ID` INT NOT NULL AUTO_INCREMENT,
-	`Username` varchar(255) NOT NULL UNIQUE,
-	`Name` varchar(100) NOT NULL,
-	`Surname` varchar(100) NOT NULL,
-	`Bio` varchar(500),
-	`Frequency` enum,
-	`Rating` INT,
-	PRIMARY KEY (`ID`)
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`username` varchar(255) NOT NULL UNIQUE,
+	`name` varchar(100) NOT NULL,
+	`surname` varchar(100) NOT NULL,
+	`bio` varchar(500),
+	`frequency` enum,
+	`rating` INT,
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Interest` (
-	`ID` INT NOT NULL AUTO_INCREMENT,
-	`Definition` varchar(255) NOT NULL,
-	PRIMARY KEY (`ID`)
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`definition` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Cuisine` (
-	`ID` INT NOT NULL AUTO_INCREMENT,
-	`Definition` varchar(255) NOT NULL,
-	PRIMARY KEY (`ID`)
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`definition` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `User_Interest` (
-	`User_id` INT NOT NULL,
-	`Interest_id` INT NOT NULL
+	`user_id` INT NOT NULL,
+	`interest_id` INT NOT NULL
 );
 
 CREATE TABLE `User_Cuisine` (
-	`User_id` INT NOT NULL,
-	`Cuisine_id` INT NOT NULL
+	`user_id` INT NOT NULL,
+	`cuisine_id` INT NOT NULL
 );
 
-ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk0` FOREIGN KEY (`User_id`) REFERENCES `User`(`ID`);
+ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
-ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk1` FOREIGN KEY (`Interest_id`) REFERENCES `Interest`(`ID`);
+ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk1` FOREIGN KEY (`interest_id`) REFERENCES `Interest`(`id`);
 
-ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk0` FOREIGN KEY (`User_id`) REFERENCES `User`(`ID`);
+ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
-ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk1` FOREIGN KEY (`Cuisine_id`) REFERENCES `Cuisine`(`ID`);
+ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk1` FOREIGN KEY (`cuisine_id`) REFERENCES `Cuisine`(`id`);
 
