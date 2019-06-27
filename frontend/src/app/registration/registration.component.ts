@@ -8,12 +8,13 @@ import { UserService } from "./../user.service";
 })
 export class RegistrationComponent implements OnInit {
   users: Array<any>;
+  user: any = {};
   
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-	this.userService.getAll().subscribe(data => {
-      this.users = data;
+    this.userService.getUserBasicInfo('tugrul').subscribe((user: any) => {
+      this.user = user;
     });
   }
 
