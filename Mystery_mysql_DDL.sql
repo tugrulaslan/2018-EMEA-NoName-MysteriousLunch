@@ -5,7 +5,7 @@ CREATE TABLE `User` (
 	`name` varchar(100) NOT NULL,
 	`surname` varchar(100) NOT NULL,
 	`bio` varchar(500),
-	`frequency` enum('Weekly', 'Monthly') NOT NULL,
+	`frequency` enum('weekly', 'monthly') NOT NULL,
 	`rating` INT,
 	PRIMARY KEY (`id`)
 );
@@ -35,15 +35,16 @@ CREATE TABLE `User_Cuisine` (
 CREATE TABLE `User_Request` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`user_id` INT NOT NULL,
-	`requested_time` DATE NOT NULL,
-	`lunch_type` enum('Pair', 'Group') NOT NULL,
+	`requested_time` enum('week', 'month') NOT NULL,
+	`lunch_type` enum('pair', 'group') NOT NULL,
+	`request_date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Matching_History` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`request_id` INT NOT NULL,
-	`date` DATE NOT NULL,
+	`request_date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
