@@ -7,18 +7,21 @@
 		  <mat-card-title><h2>Which Cuisines do you like?</h2></mat-card-title>
 	</mat-card-header>
 	<mat-card>
-<form class="example-form">
-  <mat-form-field class="example-full-width">
+	<form class="example-form">
+	  <mat-form-field class="example-full-width">
     <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option  (onSelectionChange)="selected(option)"  *ngFor="let option of filteredOptions | async" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-</form>
-
-
+<mat-list>
+  <mat-list-item *ngFor="let cuisine of chosenCuisines">
+    {{cuisine}}
+  </mat-list-item>
+</mat-list>
+	</form>
 	</mat-card>
   </mat-step>
   <mat-step label="Interests">

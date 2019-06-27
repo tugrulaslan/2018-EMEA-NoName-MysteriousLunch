@@ -11,26 +11,33 @@ import {Observable} from 'rxjs';
 })
 export class RegistrationComponent implements OnInit {
   users: Array<any>;
+  chosenCuisines: string[] = [];
   user: any = {};
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = [];
   filteredOptions: Observable<string[]>;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserBasicInfo('tugrul').subscribe((user: any) => {
-      this.user = user;
-    });
-
- this.filteredOptions = this.myControl.valueChanges.pipe(
+	this.userService.getAllCuisines().subscribe(
+			res => {this.options = res}
+	);
+   this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
+    this.userService.getUserBasicInfo('tugrul').subscribe((user: any) => {
+      this.user = user;
+    });
   }
- private _filter(value: string): string[] {
+  private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-}
+  }
+
+  private selected(selectedValue: string) {
+		this.chosenCuisines.push(selectedValue);
+  }
 }
