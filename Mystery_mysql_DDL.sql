@@ -41,11 +41,10 @@ CREATE TABLE `User_Request` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Matching_History` (
-	`id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Meeting_History` (
+	`meeting_id` INT NOT NULL,
 	`request_id` INT NOT NULL,
-	`request_date` DATE NOT NULL,
-	PRIMARY KEY (`id`)
+	`request_date` DATE NOT NULL
 );
 
 ALTER TABLE `User_Interest` ADD CONSTRAINT `User_Interest_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
@@ -58,5 +57,5 @@ ALTER TABLE `User_Cuisine` ADD CONSTRAINT `User_Cuisine_fk1` FOREIGN KEY (`cuisi
 
 ALTER TABLE `User_Request` ADD CONSTRAINT `User_Request_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
-ALTER TABLE `Matching_History` ADD CONSTRAINT `Matching_History_fk0` FOREIGN KEY (`request_id`) REFERENCES `User_Request`(`id`);
+ALTER TABLE `Meeting_History` ADD CONSTRAINT `Meeting_History_fk0` FOREIGN KEY (`request_id`) REFERENCES `User_Request`(`id`);
 
