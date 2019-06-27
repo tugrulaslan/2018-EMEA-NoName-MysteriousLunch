@@ -1,5 +1,6 @@
 CREATE TABLE "User" (
 	"ID" serial NOT NULL,
+	"Username" varchar(250) NOT NULL UNIQUE,
 	"Name" varchar(100) NOT NULL,
 	"Surname" varchar(100) NOT NULL,
 	"Bio" varchar(500),
