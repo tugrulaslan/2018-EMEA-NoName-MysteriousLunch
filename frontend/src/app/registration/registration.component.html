@@ -3,26 +3,23 @@
     Hello {{user.firstName}} {{user.lastName}}
   </mat-step>
   <mat-step label="Cuisines">
-	<mat-card-header>
-		  <mat-card-title><h2>Which Cuisines do you like?</h2></mat-card-title>
-	</mat-card-header>
-	<mat-card>
+    <h2>Which Cuisines do you like?</h2>
 	<form class="example-form">
 	  <mat-form-field class="example-full-width">
     <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option  (onSelectionChange)="selected(option)"  *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option  (onSelectionChange)="selected(option)"  *ngFor="let option of filteredCuisines | async" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+	<br/>Selected Cuisines
 <mat-list>
   <mat-list-item *ngFor="let cuisine of chosenCuisines">
     {{cuisine}}
   </mat-list-item>
 </mat-list>
 	</form>
-	</mat-card>
   </mat-step>
   <mat-step label="Interests">
     Which Interests do you have?
