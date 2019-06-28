@@ -10,7 +10,9 @@ from flask import current_app, g
 from sqlalchemy import exists
 from sqlalchemy.exc import IntegrityError
 
+from hungry.api.common import LunchMatcher
 from hungry.api.database import db_session
+from hungry.api.mail import EmailSender
 from hungry.api.transcoder import AlchemyEncoder, AlchemyDecoder
 from hungry.api.models import User, Cuisine, Interest
 
@@ -35,9 +37,18 @@ def cuisine(definition):
     cuisine = Cuisine.query.filter(Cuisine.definition == definition).first()
     return json.dumps(cuisine, cls=AlchemyEncoder)
 
-#@api.route("/request", methods=['GET', 'POST'])
-#    # TODO
-#    pass
+@api.route("/request", methods=['POST'])
+def request_lunch():
+    requesting_user = User.query.filter(User.username == 'Aslant').first()
+    matched_user = LunchMatcher.match('kozlo')
+
+    mail = EmailSender()
+    mail.send([requesting_user], [matched_user])
+
+    return Response(response=json.dumps({'Status': 'Sent'}),
+                    status=200,
+                    mimetype='application/json'
+                    )
 
 @api.route("/users", methods=['GET', 'POST'])
 def user():

@@ -28,33 +28,33 @@ try:
  sql_statement_ins = "INSERT INTO Meeting_History (meeting_id,request_id,request_date) values(%s,%s,%s);"
  sql_statement_upd_mt = "UPDATE Meeting_History SET meeting_status= %s where meeting_id= %s"
  sql_statement_upd_ur = "UPDATE User_Request SET request_status= %s where id= %s"
- sql_statement_mail = "SELECT aa.email FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.request_id  and cc.meeting_id=%s;"
+ sql_statement_mail = "SELECT aa.email,cc.meeting_id FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.id and cc.meeting_status='DONE' and cc.request_date=DATE(SYSDATE());"
 
- sender_email = "MysteriousLunch@gmail.com"
- receiver_email = "tugrulaslan@gmail.com"
- password = "Mystery123"#input("Type your password and press enter:")
+ #sender_email = "MysteriousLunch@gmail.com"
+ #receiver_email = "tugrulaslan@gmail.com"
+ #password = "Mystery123"#input("Type your password and press enter:")
 
- message = MIMEMultipart("alternative")
- message["Subject"] = "Myterious Lunch"
- message["From"] = sender_email
- message["To"] = receiver_email
+ #message = MIMEMultipart("alternative")
+ #message["Subject"] = "Myterious Lunch"
+ #message["From"] = sender_email
+ #message["To"] = receiver_email
 
 # Create the plain-text and HTML version of your message
- text = """\
-    Hi,
-     You have been chosen for mysterious lunch. Please contact with your lunchmate. :)
-    Enjoy your meal!
-"""
- html = """\
-<html>
-  <body>
-    <p>Hi,<br>
-        You have been chosen for mysterious lunch. Please contact with your lunchmate. :)
-    Enjoy your meal!
-    </p>
-  </body>
-</html>
-"""
+# text = """\
+#    Hi,
+#     You have been chosen for mysterious lunch. Please contact with your lunchmate. :)
+#   Enjoy your meal!
+#"""
+# html = """\
+#<html>
+#  <body>
+#    <p>Hi,<br>
+#        You have been chosen for mysterious lunch. Please contact with your lunchmate. :)
+#    Enjoy your meal!
+#    </p>
+#  </body>
+#</html>
+#"""
 
 
  my_database.execute(sql_statement)
@@ -146,21 +146,21 @@ try:
           max_meeting_id+=1
           cnt_mnt=0   
 
- part1 = MIMEText(text, "plain")
+# part1 = MIMEText(text, "plain")
 #part2 = MIMEText(html, "html")
 
 # Add HTML/plain-text parts to MIMEMultipart message
 # The email client will try to render the last part first
- message.attach(part1)
+# message.attach(part1)
 #message.attach(part2)
 
 # Create secure connection with server and send email 
- context = ssl.create_default_context()
- with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-  server.login(sender_email, password)
-  server.sendmail(
-  sender_email, receiver_email, message.as_string()
-    )
+# context = ssl.create_default_context()
+# with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+#  server.login(sender_email, password)
+#  server.sendmail(
+#  sender_email, receiver_email, message.as_string()
+#    )
     
     
  db_connection.close()
