@@ -3,6 +3,8 @@ import {UserService} from './../user.service';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {RegistrationSubmission} from '../registrationsubmission';
 
 @Component({
   selector: 'app-registration',
@@ -22,7 +24,8 @@ export class RegistrationComponent implements OnInit {
   private interests: string[] = [];
   private filteredInterests: Observable<string[]>;
 
-  constructor(private userService: UserService) {
+  constructor(private _snackBar: MatSnackBar,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -69,5 +72,21 @@ export class RegistrationComponent implements OnInit {
 
   private selectedInterest(selectedValue: string) {
     this.chosenInterests.push(selectedValue);
+  }
+
+  private openSnackBar() {
+    this._snackBar.open('We have received your submission!', '', {
+      duration: 2000,
+    });
+    this.userService.sendRegistrationSubmission(this.prepareSubmissionObject());
+  }
+
+  onSubmit() {
+    this.userService.sendRegistrationSubmission(this.prepareSubmissionObject());
+    this.openSnackBar();
+  }
+
+  private prepareSubmissionObject(): RegistrationSubmission {
+    return new RegistrationSubmission('aslant', this.chosenCuisines, this.chosenInterests, this.bio);
   }
 }

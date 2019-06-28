@@ -1,70 +1,73 @@
-<mat-horizontal-stepper>
-  <mat-step label="Welcome">
-    Hello {{user.firstName}} {{user.lastName}}
-    <div>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step label="Cuisines">
-    <h2>Which Cuisines do you like?</h2>
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="cuisineFormControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option (onSelectionChange)="selectedCuisine(option)" *ngFor="let option of filteredCuisines | async"
-                    [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <br/>Selected Cuisines
-    <mat-list>
-      <mat-list-item *ngFor="let cuisine of chosenCuisines">
-        {{cuisine}}
-      </mat-list-item>
-    </mat-list>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step label="Interests">
-    <h2>Which Interests do you have?</h2>
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="interestFormControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option (onSelectionChange)="selectedInterest(option)" *ngFor="let option of filteredInterests | async"
-                    [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <br/>Selected Cuisines
-    <mat-list>
-      <mat-list-item *ngFor="let interest of chosenInterests">
-        {{interest}}
-      </mat-list-item>
-    </mat-list>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step label="More About yourself">
-    <h2>Give a brief Biography</h2>
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Here we go;-)" ng-model="bio"></textarea>
-    </mat-form-field>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step label="Done">
-    You can submit
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+<form ng-submit="onSubmit()">
+  <mat-horizontal-stepper>
+    <mat-step label="Welcome">
+      <h2>Hello {{user.firstName}} {{user.lastName}}</h2>
+      We will register you to the tool. Please spare some moment with us to collect your input for the future matches!
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Cuisines">
+      <h2>Which Cuisines do you like?</h2>
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="cuisineFormControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option (onSelectionChange)="selectedCuisine(option)" *ngFor="let option of filteredCuisines | async"
+                      [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>Selected Cuisines
+      <mat-list>
+        <mat-list-item *ngFor="let cuisine of chosenCuisines">
+          {{cuisine}}
+        </mat-list-item>
+      </mat-list>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Interests">
+      <h2>Which Interests do you have?</h2>
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="interestFormControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option (onSelectionChange)="selectedInterest(option)" *ngFor="let option of filteredInterests | async"
+                      [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>Selected Cuisines
+      <mat-list>
+        <mat-list-item *ngFor="let interest of chosenInterests">
+          {{interest}}
+        </mat-list-item>
+      </mat-list>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="More About yourself">
+      <h2>Give a brief Biography</h2>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Here we go;-)" ng-model="bio"></textarea>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Done">
+      You are all set. Ready to submit?
+      <div>
+        <button mat-button (click)="openSnackBar()">Send Registration</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
