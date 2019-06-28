@@ -14,7 +14,7 @@ try:
 )
 
  my_database = db_connection.cursor()
- sql_statement = "SELECT aa.email FROM User aa, User_Request bb where bb.user_id=aa.id and bb.request_status is null;"
+ sql_statement_mail = "SELECT aa.email FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.request_id  and cc.meeting_id=%s;"
  
  sender_email = "MysteriousLunch@gmail.com"
  receiver_email = "tugrulaslan@gmail.com"

@@ -27,7 +27,7 @@ try:
  sql_statement = "SELECT * FROM User_Request where request_status is null;"
  sql_statement_ins = "INSERT INTO Meeting_History (meeting_id,request_id,request_date) values(%s,%s,%s);"
  sql_statement_upd_mt = "UPDATE Meeting_History SET meeting_status= %s where meeting_id= %s"
- sql_statement_upd_ur = "UPDATE User_Request SET request_status=""DONE"" where id= %s"
+ sql_statement_upd_ur = "UPDATE User_Request SET request_status= %s where id= %s"
  sql_statement_mail = "SELECT aa.email FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.request_id  and cc.meeting_id=%s;"
 
  sender_email = "MysteriousLunch@gmail.com"
@@ -74,7 +74,7 @@ try:
            group_month.append(x[0])
 
  #print(len(pair_month)) 
- my_database.execute("SELECT coalesce(MAX(meeting_id),0)+1 FROM Meeting_History where meeting_status is null")
+ my_database.execute("SELECT coalesce(MAX(meeting_id),0)+1 FROM Meeting_History where meeting_status is not null")
 
  result = my_database.fetchall()
  for i in result:
@@ -94,6 +94,11 @@ try:
          db_connection.commit()
          max_meeting_id+=1
          cnt_week=0        
+         
+ result = my_database.fetchall()
+ for i in result:
+  max_meeting_id=i[0]
+
             
  for val in pair_month:
      values = (max_meeting_id,val,date.today())
@@ -106,7 +111,12 @@ try:
          db_connection.commit()
          max_meeting_id+=1
          cnt_mnt=0
-      
+         
+ result = my_database.fetchall()
+ for i in result:
+  max_meeting_id=i[0]
+
+    
  for val in group_week:
      
      values = (max_meeting_id,val,date.today())
@@ -121,7 +131,10 @@ try:
           cnt_week=0
           
    
- 
+ result = my_database.fetchall()
+ for i in result:
+  max_meeting_id=i[0]
+
         
  for val in group_month:
          values = (max_meeting_id,val,date.today())
