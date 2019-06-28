@@ -28,7 +28,7 @@ try:
  sql_statement_ins = "INSERT INTO Meeting_History (meeting_id,request_id,request_date) values(%s,%s,%s);"
  sql_statement_upd_mt = "UPDATE Meeting_History SET meeting_status= %s where meeting_id= %s"
  sql_statement_upd_ur = "UPDATE User_Request SET request_status= %s where id= %s"
- sql_statement_mail = "SELECT aa.email,cc.meeting_id FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.id  and cc.meeting_status='DONE' and cc.request_date=SYSDATE();"
+ sql_statement_mail = "SELECT aa.email,cc.meeting_id FROM User aa, User_Request bb,Meeting_History cc where bb.user_id=aa.id and cc.request_id=bb.id and cc.meeting_status='DONE' and cc.request_date=DATE(SYSDATE());"
 
  sender_email = "MysteriousLunch@gmail.com"
  receiver_email = "tugrulaslan@gmail.com"
