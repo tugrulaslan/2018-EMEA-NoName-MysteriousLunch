@@ -80,7 +80,7 @@ try:
  for i in result:
     max_meeting_id=i[0]
 
-
+ initial_id=max_meeting_id
 
 
  for val in pair_week:
@@ -95,9 +95,9 @@ try:
          max_meeting_id+=1
          cnt_week=0        
          
- result = my_database.fetchall()
- for i in result:
-  max_meeting_id=i[0]
+
+ if initial_id!=max_meeting_id:
+   max_meeting_id+=1
 
             
  for val in pair_month:
@@ -112,9 +112,8 @@ try:
          max_meeting_id+=1
          cnt_mnt=0
          
- result = my_database.fetchall()
- for i in result:
-  max_meeting_id=i[0]
+ if initial_id!=max_meeting_id:
+   max_meeting_id+=1
 
     
  for val in group_week:
@@ -131,9 +130,8 @@ try:
           cnt_week=0
           
    
- result = my_database.fetchall()
- for i in result:
-  max_meeting_id=i[0]
+ if initial_id!=max_meeting_id:
+   max_meeting_id+=1
 
         
  for val in group_month:
