@@ -39,11 +39,11 @@ def cuisine(definition):
 
 @api.route("/request", methods=['POST'])
 def request_lunch():
-    requesting_user = User.query.filter(User.username == 'kozlo').first()
-    matched_user = LunchMatcher.match('rafeal')
+    requesting_user = User.query.filter(User.username == 'Aslant').first()
+    matched_user = LunchMatcher.match('kozlo')
 
     mail = EmailSender()
-    mail.send([requesting_user.email, matched_user.email])
+    mail.send([requesting_user], [matched_user])
 
     return Response(response=json.dumps({'Status': 'Sent'}),
                     status=200,
