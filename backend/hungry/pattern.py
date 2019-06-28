@@ -92,6 +92,7 @@ try:
          data = ("DONE", max_meeting_id)
          my_database.execute(sql_statement_upd_mt,data)
          db_connection.commit()
+         max_meeting_id+=1
          cnt_week=0        
             
  for val in pair_month:
