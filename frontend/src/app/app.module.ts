@@ -9,6 +9,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {AppComponent} from './app.component';
 import {RegistrationComponent} from './registration/registration.component';
@@ -32,7 +33,8 @@ import {RegistrationComponent} from './registration/registration.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

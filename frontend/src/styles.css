@@ -2,6 +2,63 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 body {
- margin: 0;
- font-family: Roboto, sans-serif;
+  margin: 0;
+  font-family: Roboto, sans-serif;
 }
+
+#ubs-logo {
+  padding-right: 35px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#mystery-logo {
+  padding-left: 35px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 75px;
+  text-align: center;
+}
+
+#mystery-wording {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: red;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+#outer {
+  padding-top: 5%;
+  width: 100%
+}
+
+#inner {
+  display: table;
+  margin: 0 auto;
+  border: solid 1px #555;
+  background-color: #eed;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.example-section {
+  display: block;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  padding-right: 25px;
+}
+
+.mat-checkbox.mat-accent .mat-checkbox-inner-container {
+  margin: 2px 8px auto 0;
+}
+
+.mat-checkbox-3 {
+  padding-right: 15px !important;
+}
+
+
